@@ -1,7 +1,11 @@
 const App = () => {
   return (
-    <div className="">
-      
+    <div className="app">
+      <section className="search-section">
+        <p>What do you want to know?
+          <button className="surprise-btn">Surprise Me</button>
+        </p>
+      </section>
     </div>
   );
 }

@@ -13,9 +13,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.post('/gemini', async (req, res) => {
-    console.log(req.body.history);
-    console.log(req.body.message);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const chat = model.startChat({
         history: req.body.history

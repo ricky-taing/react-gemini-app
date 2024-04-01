@@ -34,20 +34,19 @@ const App = () => {
       };
       const response = await fetch('http://localhost:8000/gemini', options);
       const data = await response.text();
-      console.log(data);
       setChatHistory(oldChatHIstory => [...oldChatHIstory, {
         role: "user",
-        parts: value
+        parts: [{ text: value }]
       },
-      {
-        role: "model",
-        parts: data
-      }
-    ]);
-    setValue("");
+        {
+          role: "model",
+          parts: [{ text: data }]
+        }
+      ]);
+      setValue("");
     } catch (error) {
       console.error(error);
-      setError("Something went wrong! Please try again later.")
+      setError("Something went wrong! Please try again later.");
     }
   }
 
@@ -73,8 +72,8 @@ const App = () => {
       </div>
       {error && <p>{error}</p>}
       <div className="search-result">
-        {chatHistory.map((chatItem, _index) => <div key={""}>
-          <p className="answer">{chatItem.role} : {chatItem.parts}</p>
+        {chatHistory.map((chatItem, _index) => <div key={_index}>
+          <p className="answer">{chatItem.role} : {chatItem.parts[0].text}</p>
         </div>)}
       </div>
     </div>
